@@ -7,9 +7,9 @@ import chalk from 'chalk';
 const program = new Command();
 
 program
-  .name('remove-console')
-  .description('Remove console statements from your project')
-  .version('1.0.0');
+  .name("consolex")
+  .description("Remove console statements from your project")
+  .version("1.0.0");
 
 program
   .option('-t, --types <types>', 'Console types to remove (comma-separated)', 'log,error,warn,info,debug,table,time,timeEnd,group,groupEnd,clear,count,trace')

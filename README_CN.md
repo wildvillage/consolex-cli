@@ -8,13 +8,13 @@
 
 ### 从npm安装
 ```bash
-npm install -g remove-console-cli
+npm install -g consolex-cli
 ```
 
 ### 从源码安装
 ```bash
 git clone <repository-url>
-cd remove-console-cli
+cd consolex-cli
 npm install
 npm run build
 npm install -g .
@@ -26,25 +26,25 @@ npm install -g .
 
 ```bash
 # 移除当前目录下所有类型的console语句
-remove-console
+consolex
 
 # 只移除console.log
-remove-console --types log
+consolex --types log
 
 # 移除多种类型的console语句
-remove-console --types log,error,warn
+consolex --types log,error,warn
 
 # 指定项目路径
-remove-console --path /path/to/your/project
+consolex --path /path/to/your/project
 
 # 预览模式（不实际修改文件）
-remove-console --dry-run
+consolex --dry-run
 
 # 指定文件扩展名
-remove-console --extensions js,ts,jsx,tsx
+consolex --extensions js,ts,jsx,tsx
 
 # 排除特定目录
-remove-console --exclude node_modules,dist,build
+consolex --exclude node_modules,dist,build
 ```
 
 ### 选项说明
@@ -75,13 +75,13 @@ remove-console --exclude node_modules,dist,build
 
 ```bash
 # 只移除console.log和console.error
-remove-console --types log,error
+consolex --types log,error
 
 # 处理特定目录的TypeScript文件
-remove-console --path ./src --extensions ts,tsx
+consolex --path ./src --extensions ts,tsx
 
 # 预览将要移除的console语句
-remove-console --dry-run --types log
+consolex --dry-run --types log
 ```
 
 ## 许可证

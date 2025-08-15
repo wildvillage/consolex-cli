@@ -1,17 +1,21 @@
 {
-  "name": "remove-console-cli",
+  "name": "consolex-cli",
   "version": "1.0.0",
   "description": "A CLI tool to remove console statements from your project",
   "main": "dist/index.js",
   "bin": {
-    "remove-console": "dist/index.js"
+    "consolex": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
     "prepublishOnly": "npm run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release:patch": "npm version patch && npm publish",
+    "release:minor": "npm version minor && npm publish",
+    "release:major": "npm version major && npm publish",
+    "release": "npm version patch && npm publish"
   },
   "keywords": [
     "console",
@@ -26,7 +30,7 @@
   "author": "Vomo <wysmusic@163.com>",
   "license": "MIT",
   "repository": {
-    "type": "git",
+    "type": "module",
     "url": "git+https://github.com/wildvillage/remove-console-cli"
   },
   "bugs": {

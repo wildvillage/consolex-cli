@@ -8,13 +8,13 @@ A TypeScript command-line tool for removing console statements from your project
 
 ### Install from npm
 ```bash
-npm install -g remove-console-cli
+npm install -g consolex-cli
 ```
 
 ### Install from source
 ```bash
 git clone <repository-url>
-cd remove-console-cli
+cd consolex-cli
 npm install
 npm run build
 npm install -g .
@@ -26,25 +26,25 @@ npm install -g .
 
 ```bash
 # Remove all types of console statements from current directory
-remove-console
+consolex
 
 # Remove only console.log
-remove-console --types log
+consolex --types log
 
 # Remove multiple types of console statements
-remove-console --types log,error,warn
+consolex --types log,error,warn
 
 # Specify project path
-remove-console --path /path/to/your/project
+consolex --path /path/to/your/project
 
 # Preview mode (don't actually modify files)
-remove-console --dry-run
+consolex --dry-run
 
 # Specify file extensions
-remove-console --extensions js,ts,jsx,tsx
+consolex --extensions js,ts,jsx,tsx
 
 # Exclude specific directories
-remove-console --exclude node_modules,dist,build
+consolex --exclude node_modules,dist,build
 ```
 
 ### Options
@@ -75,13 +75,13 @@ remove-console --exclude node_modules,dist,build
 
 ```bash
 # Remove only console.log and console.error
-remove-console --types log,error
+consolex --types log,error
 
 # Process TypeScript files in specific directory
-remove-console --path ./src --extensions ts,tsx
+consolex --path ./src --extensions ts,tsx
 
 # Preview console statements that would be removed
-remove-console --dry-run --types log
+consolex --dry-run --types log
 ```
 
 ## License
