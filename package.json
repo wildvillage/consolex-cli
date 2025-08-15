@@ -1,6 +1,6 @@
 {
   "name": "consolex-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI tool to remove console statements from your project",
   "main": "dist/index.js",
   "bin": {
