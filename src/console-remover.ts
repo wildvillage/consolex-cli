@@ -2,10 +2,10 @@ import * as fs from 'fs/promises';
 import * as path from 'path';
 import { glob } from 'glob';
 import chalk from 'chalk';
-import { parse } from "@babel/parser";
-import traverse from "@babel/traverse";
-import { generate } from "@babel/generator";
-import * as t from "@babel/types";
+import { parse } from '@babel/parser';
+import traverse from '@babel/traverse';
+import { generate } from '@babel/generator';
+import * as t from '@babel/types';
 
 export interface RemoveConsoleOptions {
   projectPath: string;
@@ -62,7 +62,7 @@ export async function removeConsoleFromProject(
 
   for (const filePath of uniqueFiles) {
     try {
-      const content = await fs.readFile(filePath, "utf-8");
+      const content = await fs.readFile(filePath, 'utf-8');
       const result = removeConsoleFromContent(content, consoleTypes);
 
       if (result.modified) {
@@ -79,7 +79,7 @@ export async function removeConsoleFromProject(
             )
           );
         } else {
-          await fs.writeFile(filePath, result.content, "utf-8");
+          await fs.writeFile(filePath, result.content, 'utf-8');
           console.log(
             chalk.green(
               `✓ ${path.relative(projectPath, filePath)}: ${
@@ -123,18 +123,18 @@ function removeConsoleFromContent(
 
   // 解析 | Parse
   const ast = parse(content, {
-    sourceType: "unambiguous",
+    sourceType: 'unambiguous',
     allowReturnOutsideFunction: true,
     plugins: [
-      "typescript",
-      "jsx",
-      "classProperties",
-      "objectRestSpread",
-      "decorators-legacy",
-      "dynamicImport",
-      "optionalChaining",
-      "nullishCoalescingOperator",
-      "topLevelAwait",
+      'typescript',
+      'jsx',
+      'classProperties',
+      'objectRestSpread',
+      'decorators-legacy',
+      'dynamicImport',
+      'optionalChaining',
+      'nullishCoalescingOperator',
+      'topLevelAwait',
     ],
   });
 
@@ -152,7 +152,7 @@ function removeConsoleFromContent(
       const prop = callee.property;
       const name = getName(prop);
       if (
-        t.isIdentifier(obj, { name: "console" }) &&
+        t.isIdentifier(obj, { name: 'console' }) &&
         name &&
         consoleTypes.includes(name)
       ) {
@@ -163,7 +163,7 @@ function removeConsoleFromContent(
   };
 
   // 用于将表达式安全替换为无副作用的空值 | Replace expression with side-effect-free void 0
-  const void0 = () => t.unaryExpression("void", t.numericLiteral(0), true);
+  const void0 = () => t.unaryExpression('void', t.numericLiteral(0), true);
 
   // 统一处理器 | Unified handler
   const removeConsoleCall = (path: any) => {

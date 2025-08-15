@@ -15,9 +15,12 @@ npm install -g consolex-cli
 ```bash
 git clone <repository-url>
 cd consolex-cli
-npm install
-npm run build
-npm install -g .
+pnpm i
+pnpm build
+# use
+pnpm start options
+# e.g
+pnpm start --types log,error,warn --path <"your project path"> --extensions ts,tsx --dry-run
 ```
 
 ## Usage

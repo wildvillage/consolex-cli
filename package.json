@@ -11,7 +11,14 @@
     "build": "tsc",
     "start": "node dist/index.js",
     "dev": "ts-node src/index.ts",
-    "prepublishOnly": "npm run build",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.{ts,js,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,json,md}\"",
+    "type-check": "tsc --noEmit --skipLibCheck",
+    "quality": "pnpm lint && pnpm format:check && pnpm type-check",
+    "prepare": "husky install",
+    "prepublishOnly": "pnpm quality && pnpm build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "release:patch": "npm version patch && npm publish",
     "release:minor": "npm version minor && npm publish",
@@ -55,10 +62,29 @@
     "commander": "^11.0.0",
     "glob": "^10.3.0"
   },
+  "lint-staged": {
+    "src/**/*.{ts,js}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/**/*.{json,md}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
     "@types/babel__generator": "^7.24.7",
     "@types/babel__traverse": "^7.24.7",
     "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"
   }
