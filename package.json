@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "module",
-    "url": "git+https://github.com/wildvillage/remove-console-cli"
+    "url": "git+https://github.com/wildvillage/consolex-cli"
   },
   "bugs": {
-    "url": "https://github.com/wildvillage/remove-console-cli/issues"
+    "url": "https://github.com/wildvillage/consolex-cli/issues"
   },
-  "homepage": "https://github.com/wildvillage/remove-console-cli#readme",
+  "homepage": "https://github.com/wildvillage/consolex-cli#readme",
   "files": [
     "dist",
     "README.md",
@@ -56,10 +56,10 @@
     "glob": "^10.3.0"
   },
   "devDependencies": {
+    "@types/babel__generator": "^7.24.7",
+    "@types/babel__traverse": "^7.24.7",
     "@types/node": "^20.0.0",
     "ts-node": "^10.9.0",
-    "typescript": "^5.0.0",
-    "@types/babel__generator": "^7.24.7",
-    "@types/babel__traverse": "^7.24.7"
+    "typescript": "^5.0.0"
   }
 }

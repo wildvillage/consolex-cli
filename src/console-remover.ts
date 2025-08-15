@@ -3,8 +3,8 @@ import * as path from 'path';
 import { glob } from 'glob';
 import chalk from 'chalk';
 import { parse } from "@babel/parser";
-import { default as traverse } from "@babel/traverse";
-import { default as generate } from "@babel/generator";
+import traverse from "@babel/traverse";
+import { generate } from "@babel/generator";
 import * as t from "@babel/types";
 
 export interface RemoveConsoleOptions {
@@ -36,12 +36,19 @@ export async function removeConsoleFromProject(
   const patterns = fileExtensions.map((ext) => `**/*.${ext}`);
   const files: string[] = [];
 
+  // 扩展忽略模式，确保目录被正确忽略 | Expand ignore patterns to reliably ignore directories
+  const expandedIgnore = excludePatterns.flatMap((p) => [
+    p,
+    `${p}/**`,
+    `**/${p}/**`,
+  ]);
+
   for (const pattern of patterns) {
     const matchedFiles = await glob(pattern, {
       cwd: projectPath,
       absolute: true,
       // 直接使用用户提供的忽略模式 | Use user-provided ignore patterns as-is
-      ignore: excludePatterns,
+      ignore: expandedIgnore,
     });
     files.push(...matchedFiles);
   }
@@ -195,9 +202,7 @@ function removeConsoleFromContent(
   };
 
   // 遍历：处理 CallExpression 和 OptionalCallExpression | Traverse
-  // @ts-expect-error
-  traverse(ast, {
-    // @ts-expect-error
+  traverse.default(ast, {
     CallExpression(path) {
       removeConsoleCall(path);
     },
@@ -207,7 +212,6 @@ function removeConsoleFromContent(
   });
 
   // 生成 | Generate
-  // @ts-expect-error
   const output = generate(
     ast,
     {
