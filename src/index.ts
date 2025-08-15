@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { Command } from 'commander';
-import { removeConsoleFromProject } from './console-remover';
+import { removeConsoleFromProject } from "./console-remover.js";
 import chalk from 'chalk';
 
 const program = new Command();
