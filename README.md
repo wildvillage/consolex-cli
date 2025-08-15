@@ -1,4 +1,4 @@
-# Remove Console CLI
+# Consolex CLI
 
 [中文文档](./README_CN.md)
 

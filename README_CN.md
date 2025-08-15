@@ -1,4 +1,4 @@
-# Remove Console CLI
+# Consolex CLI
 
 [English Documentation](./README.md)
 
