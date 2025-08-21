@@ -219,6 +219,10 @@ function removeConsoleFromContent(
       retainLines: true,
       compact: false,
       jsescOption: { minimal: true },
+      shouldPrintComment: () => true,
+      retainFunctionParens: true,
+      minified: false,
+      concise: false,
     },
     content
   );
