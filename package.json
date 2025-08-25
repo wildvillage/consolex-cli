@@ -20,10 +20,10 @@
     "prepare": "husky install",
     "prepublishOnly": "pnpm quality && pnpm build",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "release:patch": "npm version patch && npm publish",
-    "release:minor": "npm version minor && npm publish",
-    "release:major": "npm version major && npm publish",
-    "release": "npm version patch && npm publish"
+    "release:patch": "npm version patch && npm publish --registry=https://registry.npmjs.org/",
+    "release:minor": "npm version minor && npm publish --registry=https://registry.npmjs.org/",
+    "release:major": "npm version major && npm publish --registry=https://registry.npmjs.org/",
+    "release": "npm version patch && npm publish --registry=https://registry.npmjs.org/"
   },
   "keywords": [
     "console",
@@ -87,5 +87,8 @@
     "prettier": "^3.0.0",
     "ts-node": "^10.9.0",
     "typescript": "^5.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
