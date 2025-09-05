@@ -59,6 +59,10 @@ consolex --exclude node_modules,dist,build
 - `--exclude <patterns>`: Directory patterns to exclude (comma-separated), defaults to node_modules,dist,build,.git
 - `-u, --update`: Check for updates and upgrade to the latest version
 
+### Special Notes
+
+- **Registry Handling**: Update checking and installation functions automatically use the npm official registry (`https://registry.npmjs.org/`), unaffected by user's local private registry configuration, ensuring correct version information retrieval.
+
 ### Supported Console Types
 
 - log
@@ -87,7 +91,7 @@ consolex --path ./src --extensions ts,tsx
 # Preview console statements that would be removed
 consolex --dry-run --types log
 
-# Check for updates
+# Check for updates (automatically uses npm official registry)
 consolex --update
 
 # Check for updates without auto-installing

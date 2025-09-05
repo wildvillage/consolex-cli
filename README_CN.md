@@ -59,6 +59,10 @@ consolex --exclude node_modules,dist,build
 - `--exclude <patterns>`: 排除的目录模式（逗号分隔），默认排除 node_modules,dist,build,.git
 - `-u, --update`: 检查更新并升级到最新版本
 
+### 特别说明
+
+- **镜像处理**: 更新检查和安装功能会自动使用 npm 官方镜像 (`https://registry.npmjs.org/`)，不受用户本地配置的私有镜像影响，确保获取到正确的版本信息。
+
 ### 支持的Console类型
 
 - log
@@ -87,7 +91,7 @@ consolex --path ./src --extensions ts,tsx
 # 预览将要移除的console语句
 consolex --dry-run --types log
 
-# 检查并升级版本
+# 检查并升级版本（自动使用npm官方镜像）
 consolex --update
 
 # 仅检查更新不自动安装

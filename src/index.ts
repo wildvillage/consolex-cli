@@ -4,13 +4,36 @@ import { Command } from 'commander';
 import { removeConsoleFromProject } from './console-remover.js';
 import chalk from 'chalk';
 import { checkAndUpdate } from './updater.js';
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
+
+// 动态读取版本号
+function getVersion(): string {
+  try {
+    // 在 ES 模块中获取当前文件的目录
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+
+    // 获取 package.json 的路径
+    const packageJsonPath = path.join(__dirname, '..', 'package.json');
+    const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+    return packageJson.version;
+  } catch {
+    // 如果读取失败，返回默认版本
+    console.warn(
+      'Warning: Could not read version from package.json, using fallback version'
+    );
+    return '1.0.0';
+  }
+}
 
 const program = new Command();
 
 program
   .name('consolex')
   .description('Remove console statements from your project')
-  .version('1.0.10');
+  .version(getVersion());
 
 program
   .option(
