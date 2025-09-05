@@ -3,13 +3,14 @@
 import { Command } from 'commander';
 import { removeConsoleFromProject } from './console-remover.js';
 import chalk from 'chalk';
+import { checkAndUpdate } from './updater.js';
 
 const program = new Command();
 
 program
   .name('consolex')
   .description('Remove console statements from your project')
-  .version('1.0.0');
+  .version('1.0.10');
 
 program
   .option(
@@ -29,8 +30,15 @@ program
     'Exclude patterns (comma-separated)',
     'node_modules,dist,build,.git'
   )
+  .option('-u, --update', 'Check for updates and upgrade to the latest version')
   .action(async (options) => {
     try {
+      // 如果用户指定了 --update 选项，执行更新检查和升级
+      if (options.update) {
+        await checkAndUpdate(true);
+        return;
+      }
+
       const types = options.types.split(',').map((t: string) => t.trim());
       const extensions = options.extensions
         .split(',')
@@ -70,6 +78,22 @@ program
           );
         }
       }
+    } catch (error) {
+      console.error(
+        chalk.red('Error:'),
+        error instanceof Error ? error.message : error
+      );
+      process.exit(1);
+    }
+  });
+
+// 添加一个独立的检查更新命令
+program
+  .command('check-update')
+  .description('Check if there are any updates available')
+  .action(async () => {
+    try {
+      await checkAndUpdate(false);
     } catch (error) {
       console.error(
         chalk.red('Error:'),

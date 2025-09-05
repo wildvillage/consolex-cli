@@ -57,6 +57,7 @@ consolex --exclude node_modules,dist,build
 - `-e, --extensions <extensions>`: File extensions to process (comma-separated), defaults to js,ts,jsx,tsx
 - `--dry-run`: Preview mode, shows what would be removed without actually modifying files
 - `--exclude <patterns>`: Directory patterns to exclude (comma-separated), defaults to node_modules,dist,build,.git
+- `-u, --update`: Check for updates and upgrade to the latest version
 
 ### Supported Console Types
 
@@ -85,6 +86,12 @@ consolex --path ./src --extensions ts,tsx
 
 # Preview console statements that would be removed
 consolex --dry-run --types log
+
+# Check for updates
+consolex --update
+
+# Check for updates without auto-installing
+consolex check-update
 ```
 
 ## License

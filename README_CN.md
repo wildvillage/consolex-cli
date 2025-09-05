@@ -57,6 +57,7 @@ consolex --exclude node_modules,dist,build
 - `-e, --extensions <extensions>`: 要处理的文件扩展名（逗号分隔），默认为 js,ts,jsx,tsx
 - `--dry-run`: 预览模式，显示将要移除的内容但不实际修改文件
 - `--exclude <patterns>`: 排除的目录模式（逗号分隔），默认排除 node_modules,dist,build,.git
+- `-u, --update`: 检查更新并升级到最新版本
 
 ### 支持的Console类型
 
@@ -85,6 +86,12 @@ consolex --path ./src --extensions ts,tsx
 
 # 预览将要移除的console语句
 consolex --dry-run --types log
+
+# 检查并升级版本
+consolex --update
+
+# 仅检查更新不自动安装
+consolex check-update
 ```
 
 ## 许可证
