@@ -125,6 +125,9 @@ function removeConsoleFromContent(
   const ast = parse(content, {
     sourceType: 'unambiguous',
     allowReturnOutsideFunction: true,
+    // 启用新的格式保留功能所需的选项
+    tokens: true,
+    createParenthesizedExpressions: true,
     plugins: [
       'typescript',
       'jsx',
@@ -211,19 +214,20 @@ function removeConsoleFromContent(
     },
   });
 
-  // 生成 | Generate
+  // 生成 | Generate - 使用实验性格式保留功能
   const output = generate(
     ast,
     {
       comments: true,
       retainLines: true,
       compact: false,
-      jsescOption: { minimal: true },
       shouldPrintComment: () => true,
       retainFunctionParens: true,
       minified: false,
       concise: false,
-    },
+      // 实验性格式保留选项 - 保持原始代码格式
+      experimental_preserveFormat: true,
+    } as any, // 使用 as any 来绕过 TypeScript 类型检查
     content
   );
 
