@@ -4,6 +4,15 @@
 
 一个用于移除项目中console语句的TypeScript命令行工具。
 
+## 特性
+
+- 基于 AST 的安全移除，最小化文本改动，尽量保留原始格式与注释
+- 支持 JS/TS/JSX/TSX，覆盖复杂表达式与三元运算
+- 独立语句整体删除；表达式内部调用替换为 `void 0`，保持语法有效
+- 支持 dry-run 与 debug 模式，便于预览与排查
+- 基于 glob 的包含/排除配置，默认忽略常见产物目录
+- 内置更新检查，固定使用 npm 官方源
+
 ## 安装
 
 ### 从npm安装
@@ -58,6 +67,7 @@ consolex --exclude node_modules,dist,build
 - `--dry-run`: 预览模式，显示将要移除的内容但不实际修改文件
 - `--exclude <patterns>`: 排除的目录模式（逗号分隔），默认排除 node_modules,dist,build,.git
 - `-u, --update`: 检查更新并升级到最新版本
+- `--debug`: 打开调试日志（glob 匹配、样本文件、解析错误等）
 
 ### 特别说明
 
@@ -96,6 +106,9 @@ consolex --update
 
 # 仅检查更新不自动安装
 consolex check-update
+
+# 启用详细调试输出以检查匹配和解析
+consolex --debug --dry-run
 ```
 
 ## 许可证
