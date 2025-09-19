@@ -4,6 +4,15 @@
 
 A TypeScript command-line tool for removing console statements from your project.
 
+## Features
+
+- Safe AST-based removal with minimal text edits, preserving your original formatting and comments
+- Works with JS/TS/JSX/TSX, including complex expressions and ternaries
+- Standalone console statements are removed; in-expression calls are replaced with `void 0` to keep syntax valid
+- Dry-run and debug modes to preview and trace changes
+- Glob-based include/exclude with sensible defaults
+- Built-in update checker using the official npm registry
+
 ## Installation
 
 ### Install from npm
@@ -58,6 +67,7 @@ consolex --exclude node_modules,dist,build
 - `--dry-run`: Preview mode, shows what would be removed without actually modifying files
 - `--exclude <patterns>`: Directory patterns to exclude (comma-separated), defaults to node_modules,dist,build,.git
 - `-u, --update`: Check for updates and upgrade to the latest version
+- `--debug`: Enable debug logs (glob patterns, sample matches, parse errors)
 
 ### Special Notes
 
@@ -96,6 +106,9 @@ consolex --update
 
 # Check for updates without auto-installing
 consolex check-update
+
+# Enable verbose debug output to inspect matching and parsing
+consolex --debug --dry-run
 ```
 
 ## License

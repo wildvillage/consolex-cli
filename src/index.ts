@@ -54,6 +54,7 @@ program
     'node_modules,dist,build,.git'
   )
   .option('-u, --update', 'Check for updates and upgrade to the latest version')
+  .option('--debug', 'Enable debug mode')
   .action(async (options) => {
     try {
       // 如果用户指定了 --update 选项，执行更新检查和升级
@@ -83,6 +84,7 @@ program
         fileExtensions: extensions,
         dryRun: options.dryRun,
         excludePatterns,
+        debug: options.debug,
       });
 
       if (result.filesProcessed === 0) {
